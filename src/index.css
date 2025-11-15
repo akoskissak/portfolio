@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* base */
+:root {
+  /* Default: Dark Theme (Softened) */
+  --color-primary: 255, 255, 255; /* White for light elements */
+  --color-secondary: 255, 255, 255; /* White for light elements */
+  --color-bg: 22, 27, 34; /* Soft dark gray/blue, not pure black */
+  --color-text: 243, 244, 246; /* text-gray-100 */
+  --color-glass-bg: 255, 255, 255; /* White for glass effect base */
+  --color-card-bg-opacity: 0.05;
+  --color-border-opacity: 0.1;
+  --color-blob-1: 10, 100, 200; /* Subtle blue */
+  --color-blob-2: 150, 50, 200; /* Subtle purple */
+  color-scheme: dark;
+}
+
+.light {
+  /* Light Theme (Softer, off-white background) */
+  --color-primary: 0, 0, 0; /* Black for dark elements */
+  --color-secondary: 0, 0, 0; /* Black for dark elements */
+  --color-bg: 250, 250, 250; /* Very soft light gray/off-white */
+  --color-text: 17, 24, 39; /* text-gray-900 */
+  --color-glass-bg: 0, 0, 0; /* Black for glass effect base */
+  --color-card-bg-opacity: 0.03;
+  --color-border-opacity: 0.05;
+  --color-blob-1: 200, 220, 255; /* Soft light blue */
+  --color-blob-2: 255, 200, 220; /* Soft light pink */
+  color-scheme: light;
+}
+
+html,
+body {
+  @apply font-sans scroll-smooth;
+  background: rgb(var(--color-bg)); /* Use variable for background */
+  color: rgb(var(--color-text)); /* Use variable for text */
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* subtle glass card - Updated to use variables */
+.glass {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--color-glass-bg), var(--color-card-bg-opacity)),
+    rgba(var(--color-glass-bg), calc(var(--color-card-bg-opacity) - 0.01))
+  );
+  border: 1px solid rgba(var(--color-glass-bg), var(--color-border-opacity));
+  backdrop-filter: blur(8px);
+}
+
+/* Custom class for the global animated blob gradients */
+.blob-gradient-1 {
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-blob-1), 0.3) 0%,
+    transparent 70%
+  );
+}
+.blob-gradient-2 {
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-blob-2), 0.3) 0%,
+    transparent 70%
+  );
+}
+
+/* small helpers */
+.section-snap {
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+}
+.max-width {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
