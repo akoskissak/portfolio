@@ -4,7 +4,6 @@ import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
-import CV from "./sections/cv";
 import Contact from "./sections/Contact";
 
 export default function App() {
@@ -39,9 +38,7 @@ export default function App() {
         <section className="section-snap" id="skills">
           <Skills />
         </section>
-        <section className="section-snap" id="cv">
-          <CV />
-        </section>
+        <section className="section-snap" id="cv"></section>
         <section className="section-snap" id="contact">
           <Contact />
         </section>
