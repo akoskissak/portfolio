@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "dev": "vite"
+    "deploy": "gh-pages -d dist",
+    "dev": "vite",
+    "build": "vite build"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
