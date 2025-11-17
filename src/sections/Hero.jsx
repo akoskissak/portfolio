@@ -16,7 +16,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-[rgba(var(--color-text),0.3)] shadow-[0_0_50px_rgba(var(--color-text),0.1)] backdrop-blur-md"
+          className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-[rgba(var(--color-text),0.3)] shadow-[0_0_50px_rgba(var(--color-text),0.1)] backdrop-blur-md"
         >
           <img
             src={profile}
@@ -29,7 +29,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mt-8 text-5xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-[linear-gradient(90deg,rgb(var(--color-text))_50%,rgba(var(--color-text),0.8)_100%)]"
+          className="mt-8 text-4xl sm:text-5xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-[linear-gradient(90deg,rgb(var(--color-text))_50%,rgba(var(--color-text),0.8)_100%)]"
         >
           Hi, I'm Ákos
         </motion.h1>
@@ -38,7 +38,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="mt-4 text-lg md:text-xl text-gray-500 max-w-xl"
+          className="mt-4 text-base sm:text-lg md:text-xl text-gray-500 max-w-xl px-4 sm:px-0"
         >
           A passionate developer crafting interactive tools and experiences that
           blend design, logic, and creativity.
@@ -49,7 +49,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.9 }}
-          className="mt-8 px-6 py-3 bg-[rgba(var(--color-text),0.05)] hover:bg-[rgba(var(--color-text),0.1)] rounded-full font-medium border border-[rgba(var(--color-text),0.2)] text-[rgb(var(--color-text))] backdrop-blur-md transition-all shadow-md"
+          className="mt-8 px-6 py-3 bg-[rgba(var(--color-text),0.05)] hover:bg-[rgba(var(--color-text),0.1)] rounded-full font-medium border border-[rgba(var(--color-text),0.2)] text-[rgb(var(--color-text))] backdrop-blur-md shadow-md"
         >
           View My Projects
         </motion.a>

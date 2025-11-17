@@ -11,7 +11,7 @@ export default function About() {
         className="grid md:grid-cols-2 gap-10 items-center"
       >
         <div>
-          <h2 className="text-4xl font-bold text-[rgb(var(--color-text))]">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[rgb(var(--color-text))]">
             About me
           </h2>
           <p className="mt-4 text-gray-500 max-w-xl">

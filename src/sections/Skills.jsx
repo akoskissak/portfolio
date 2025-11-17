@@ -1,37 +1,46 @@
 import { motion } from "framer-motion";
 
 const skills = [
-  "Golang",
-  "Python",
+  "Android",
   "Angular",
+  "AWS Bedrock",
+  "AWS CloudFront",
+  "AWS Lambda",
+  "AWS S3",
+  "CSS",
+  "Docker",
+  "ElectronJS",
+  "Firebase",
+  "Golang",
+  "GPT API",
+  "Grafana",
+  "HTML",
+  "Jaeger",
+  "Java",
+  "JS",
+  "Maven",
   "MongoDB",
   "Neo4j",
+  "NumPy",
+  "npm",
+  "OpenCV (cv2)",
+  "Pandas",
+  "Pinecone",
   "PostgreSQL",
+  "Prometheus",
+  "Python",
   "REST",
   "RPC",
-  "Docker",
-  "Prometheus",
-  "Grafana",
-  "Jaeger",
+  "Spring Boot",
+  "SQLite",
   "Telegraf",
-  "Angular",
-  "AWS Lambda",
-  "Python",
-  "Pinecone",
-  "AWS Bedrock",
-  "AWS S3",
-  "AWS CloudFront",
-  "ElectronJS",
-  "GPT API",
-  "HTML",
-  "JS",
-  "CSS",
+  "WEB Crypto API",
 ];
 
 export default function Skills() {
   return (
     <div className="max-width py-24">
-      <h2 className="text-4xl font-bold mb-6 text-[rgb(var(--color-text))]">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-[rgb(var(--color-text))]">
         Skills & Technologies
       </h2>
       <motion.div

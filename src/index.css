@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* base */
 :root {
   /* Default: Dark Theme (Softened) */
   --color-primary: 255, 255, 255; /* White for light elements */
@@ -37,9 +36,16 @@ body {
   background: rgb(var(--color-bg)); /* Use variable for background */
   color: rgb(var(--color-text)); /* Use variable for text */
   min-height: 100vh;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   margin: 0;
   padding: 0;
   transition: background-color 0.3s, color 0.3s;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
 /* subtle glass card - Updated to use variables */

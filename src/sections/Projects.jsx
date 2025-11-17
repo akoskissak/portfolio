@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ProjectModal from "./ProjectModal";
 
 const projects = [
   {
@@ -41,46 +43,119 @@ const projects = [
     ],
     link: "https://github.com/akoskissak/soa-team-5",
   },
+  {
+    title: "PKI and Shared Password Manager",
+    desc: "A comprehensive security project implementing a Public Key Infrastructure (PKI) system and a Shared Password Manager for the 'Security in Electronic Business Systems' course. The PKI handles issuing, viewing, and revoking Root, Intermediate, and End-Entity certificates, supporting CSRs, and using templates for X.509 extensions. The Shared Password Manager encrypts passwords on the Angular frontend using the recipient's public key for secure storage and sharing. The system features secure user registration (with email confirmation), login with reCAPTCHA, HTTPS communication, active JWT token tracking, robust audit logging, resistance to common web attacks like SQL Injection and XSS, and two factor authentication.",
+    tech: [
+      "Java",
+      "Spring Boot",
+      "Angular",
+      "PostgreSQL",
+      "WEB Crypto API",
+      "Maven",
+      "npm",
+    ],
+    link: "https://github.com/akoskissak/pki-system",
+  },
+  {
+    title: "Habit Master: RPG Habit & Goal Tracker",
+    desc: "Habit Master is an Android mobile application designed to gamify productivity by transforming real-world goals and habits into an engaging RPG (Role-Playing Game) experience. Users manage daily tasks to earn XP, level up, unlock Equipment, and engage in challenging Boss Fights. The system uses task difficulty/importance to calculate XP rewards, driving user motivation and consistency. Core features include a Character Sheet (displaying Level, XP, Coins, Gear), a Quest Log (Task Management), a Leveling and Boss Fight system, and social Guild Missions where users collaborate to defeat joint bosses.",
+    tech: ["Android", "Java", "SQLite", "Firebase"],
+    link: "https://github.com/akoskissak/e2-ma-tim02-2025",
+  },
+  {
+    title: "Duck Detection Script: Computer Vision for Counting",
+    desc: "This Python script provides an automated solution for detecting and counting ducks within images using fundamental Computer Vision techniques. It leverages HSV color filtering to mask colors typically associated with ducks (white, yellow, and brown). The script then applies contour detection and filtering based on area to accurately count the isolated duck-like objects. It reads ground truth counts from a CSV file, compares them against the detected counts, and calculates the Mean Absolute Error (MAE) to quantify the overall accuracy of the detection methodology.",
+    tech: ["Python", "OpenCV (cv2)", "NumPy", "Pandas"],
+    link: "https://github.com/akoskissak/DuckDetection",
+  },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
 export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const openModal = (project) => {
+    setSelectedProject(project);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+  };
+
   return (
     <div className="max-width py-24">
-      <h2 className="text-4xl font-bold mb-8 text-[rgb(var(--color-text))]">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-[rgb(var(--color-text))]">
         Projects
       </h2>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <motion.div
+        className="grid md:grid-cols-3 gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
         {projects.map((p, i) => (
-          <motion.a
+          <motion.div
             key={i}
-            href={p.link}
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={() => openModal(p)}
             whileHover={{ scale: 1.03 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.001 }}
-            className="group glass p-6 rounded-2xl block border-transparent hover:border-[rgba(var(--color-text),0.1)] transition-colors"
+            variants={itemVariants}
+            className="group glass p-6 rounded-2xl block border-transparent hover:border-[rgba(var(--color-text),0.1)] transition-colors cursor-pointer"
           >
             <h3 className="text-xl font-semibold text-[rgb(var(--color-text))] mb-2">
               {p.title}
             </h3>
-            <p className="text-gray-500 text-sm mb-4">{p.desc}</p>
+            <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+              {p.desc.split(". ")[0]}.
+            </p>
             <div className="flex gap-2 flex-wrap">
-              {p.tech.map((t) => (
+              {p.tech.slice(0, 3).map((t) => (
                 <span
                   key={t}
-                  className="text-xs px-2 py-1 rounded-full bg-[rgba(var(--color-text),0.08)] hover:shadow-md hover:scale-[1.01]"
+                  className="text-xs px-2 py-1 rounded-full bg-[rgba(var(--color-text),0.08)]"
                 >
                   {t}
                 </span>
               ))}
+              {p.tech.length > 3 && (
+                <span className="text-xs px-2 py-1 rounded-full bg-[rgba(var(--color-text),0.08)]">
+                  +{p.tech.length - 3} more
+                </span>
+              )}
             </div>
-          </motion.a>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal project={selectedProject} onClose={closeModal} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
