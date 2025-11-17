@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Loader2, CheckCircle, XCircle } from "lucide-react";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xovybkvo";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xnnlrrby";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
