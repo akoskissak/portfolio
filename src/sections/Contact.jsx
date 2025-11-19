@@ -15,6 +15,24 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const trackLinkedInClick = () => {
+    if (typeof gtag !== "undefined") {
+      gtag("event", "linkedin_click", {
+        event_category: "Contact",
+        event_label: "LinkedIn Profile",
+      });
+    }
+  };
+
+  const trackGitHubClick = () => {
+    if (typeof gtag !== "undefined") {
+      gtag("event", "github_click", {
+        event_category: "Contact",
+        event_label: "GitHub Profile",
+      });
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -88,6 +106,7 @@ export default function Contact() {
             className="px-5 py-3 rounded-full border border-[rgba(var(--color-text),0.2)] text-[rgb(var(--color-text))] transition-colors hover:bg-[rgba(var(--color-text),0.05)]"
             href="https://linkedin.com/in/akoskissak"
             target="_blank"
+            onClick={trackLinkedInClick}
             rel="noopener noreferrer"
           >
             LinkedIn
@@ -96,6 +115,7 @@ export default function Contact() {
             className="px-5 py-3 rounded-full border border-[rgba(var(--color-text),0.2)] text-[rgb(var(--color-text))] transition-colors hover:bg-[rgba(var(--color-text),0.05)]"
             href="https://github.com/akoskissak"
             target="_blank"
+            onClick={trackGitHubClick}
             rel="noopener noreferrer"
           >
             GitHub

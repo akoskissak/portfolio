@@ -149,7 +149,15 @@ const itemVariants = {
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const openModal = (project) => setSelectedProject(project);
+  const openModal = (project) => {
+    setSelectedProject(project);
+    if (typeof gtag !== "undefined") {
+      gtag("event", "project_open", {
+        event_category: "Projects",
+        event_label: project.title,
+      });
+    }
+  };
   const closeModal = () => setSelectedProject(null);
 
   return (
