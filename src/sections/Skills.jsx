@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 
 const skills = [
+  ".NET",
   "Android",
   "Angular",
   "AWS Bedrock",
   "AWS CloudFront",
   "AWS Lambda",
   "AWS S3",
+  "C#",
   "CSS",
   "Docker",
   "ElectronJS",
@@ -31,6 +33,7 @@ const skills = [
   "Python",
   "REST",
   "RPC",
+  "Scrum/Agile",
   "Spring Boot",
   "SQLite",
   "Telegraf",

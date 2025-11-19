@@ -15,9 +15,12 @@ export default function About() {
             About me
           </h2>
           <p className="mt-4 text-gray-500 max-w-xl">
-            I’m a software engineer who enjoys building interactive web
-            experiences, clean engineering and accessible UI. I focused on
-            projects with educational value and automation.
+            I’m a software engineer focused on backend development, cloud
+            infrastructure, and high-performance computing. I enjoy building
+            scalable distributed systems, optimizing performance, and delivering
+            real-world solutions in modern DevOps environments. Currently
+            pursuing a Master’s degree in High Performance Computing while
+            working on cloud-native and microservices-based projects.
           </p>
         </div>
 
@@ -31,17 +34,15 @@ export default function About() {
             </li>
             <li>
               <strong className="text-[rgb(var(--color-text))]">Degree:</strong>{" "}
-              Applied Science and Informatics - BSc
+              Computing and Control Engineering - BSc, Master in High
+              Performance Computing (in progress)
             </li>
             <li>
               <strong className="text-[rgb(var(--color-text))]">
                 Interests:
               </strong>{" "}
-              AI & Machine Learning, Natural Language Processing, Interactive
-              Web Applications, Cloud & Serverless Architecture, Microservices &
-              Distributed Systems, DevOps & Containerization, Educational
-              Technology, Frontend & UX Development, Data Visualization,
-              Full-Stack Development
+              Cloud Engineering, Distributed Systems, Parallel Computing, DevOps
+              & Automation, Backend Engineering, Performance Optimization
             </li>
             <li>
               <strong className="text-[rgb(var(--color-text))]">

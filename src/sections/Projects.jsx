@@ -4,69 +4,121 @@ import ProjectModal from "./ProjectModal";
 
 const projects = [
   {
-    title: "EduToolkit",
-    desc: "EduToolkit is an AI-driven platform designed to empower educators and students to create fully interactive educational tools as standalone HTML files, eliminating the need for programming knowledge. Users can define objects, behaviors, and interactions through a step-by-step wizard interface, with optional image uploads that the AI uses to automatically generate descriptive content and suggested elements. Each generated tool is self-contained, including embedded CSS and JavaScript, and supports IF–THEN logic to create guided, interactive learning experiences. The platform also features a chat-based interface, allowing users to refine, modify, or enhance generated tools using natural language instructions. Powered by GPT-5 Mini, EduToolkit automates complex content generation while keeping outputs pedagogically meaningful, visually engaging, and immediately deployable in any modern web browser without additional installation or dependencies.",
-    tech: ["ElectronJS", "GPT API", "HTML", "JS", "CSS"],
-    link: "https://github.com/akoskissak/EduToolkit",
-  },
-  {
     title: "AI Chatbot for Jira (Levi9 Internship)",
-    desc: "The project implements an AI-powered chatbot fully integrated with Jira to provide users with quick, accurate, and context-aware answers to questions about projects and tickets. Using Retrieval-Augmented Generation (RAG), the chatbot retrieves relevant information directly from Jira tickets to generate grounded responses. The backend is built with AWS Lambda (Python), processing Jira webhooks and orchestrating user queries, while ticket content is stored as vector embeddings in Pinecone for efficient semantic search. The frontend is a responsive Angular SPA, deployed as a static site via AWS S3 and CloudFront, delivering a smooth chat experience. Every response includes a link to the original Jira ticket, ensuring traceability and transparency of information.",
+    desc: [
+      "AI-powered chatbot integrated with Jira using Retrieval-Augmented Generation (RAG)",
+      "Backend: AWS Lambda (Python) orchestrating Jira webhook and query processing",
+      "Semantic search powered by Pinecone vector embeddings",
+      "Angular SPA deployed using AWS S3 + CloudFront",
+      "AWS Bedrock LLM for accurate ticket-referenced responses",
+    ].join("\n"),
     tech: [
       "Angular",
-      "AWS Lambda",
-      "Python",
-      "Pinecone",
       "AWS Bedrock",
-      "AWS S3",
       "AWS CloudFront",
+      "AWS Lambda",
+      "AWS S3",
+      "Pinecone",
+      "Python",
     ],
     link: "https://github.com/crncevicmarko/LLM-AWS-Search",
   },
   {
+    title: "Tourism Booking Platform",
+    desc: [
+      "Full-stack development of a tourism booking platform similar to GetYourGuide",
+      "Backend implemented in .NET (C#) with Angular frontend",
+      "PostgreSQL database ensuring transactional consistency",
+      "Designed service aggregators to integrate multi-source data",
+      "Conducted real user interviews to improve features and UX",
+      "Delivered product increments within a Scrum/Agile environment",
+    ].join("\n"),
+    tech: [".NET", "C#", "Angular", "PostgreSQL", "Scrum/Agile"],
+    link: "https://github.com/akoskissak/psw-be-ra-2024-group-6",
+  },
+  {
     title: "Microservices-Based Tourism Platform",
-    desc: "A microservices-based Tourist Application designed to manage users, tours, blogs, and interactions in a tourism ecosystem. The system supports multiple roles - Administrator, Tour Guide, and Tourist - with features including user registration, profile management, blog creation, following other users, tour creation with geolocation points, and tour purchase tracking. The backend is built with Golang and Python, using NoSQL (MongoDB, Neo4j) and SQL (PostgreSQL) databases, while the frontend is implemented in Angular (hosted in a separate repository). All services are containerized with Docker and orchestrated via Docker Compose, with monitoring and logging provided through a full stack including Prometheus, Grafana, Jaeger, and Telegraf. Microservices communicate via REST and RPC, ensuring independent deployment, scalability, and maintainability of the system.",
+    desc: [
+      "Distributed microservices system for tourism activities and user interactions",
+      "Backend: Golang + Python, REST & RPC communication",
+      "Data layer: PostgreSQL, MongoDB, Neo4j",
+      "Role-based access (Admin, Tour Guide, Tourist)",
+      "Tour creation with geolocation, blogs, recommendations, purchases",
+      "Docker Compose orchestration with independent deployments",
+      "Monitoring & tracing: Prometheus, Grafana, Jaeger, Telegraf",
+    ].join("\n"),
     tech: [
-      "Golang",
-      "Python",
       "Angular",
+      "Docker",
+      "Golang",
+      "Grafana",
+      "Jaeger",
       "MongoDB",
       "Neo4j",
       "PostgreSQL",
+      "Prometheus",
+      "Python",
       "REST",
       "RPC",
-      "Docker",
-      "Prometheus",
-      "Grafana",
-      "Jaeger",
       "Telegraf",
     ],
     link: "https://github.com/akoskissak/soa-team-5",
   },
   {
+    title: "EduToolkit - AI Interactive Tools Generator",
+    desc: [
+      "Electron app enabling creation of standalone interactive educational tools",
+      "Wizard-based interface for defining objects and interactions",
+      "Optional image upload -> AI generates descriptions & elements",
+      "Outputs single HTML files with embedded JS/CSS",
+      "Natural language editing via chat interface using GPT-5 Mini",
+    ].join("\n"),
+
+    tech: ["CSS", "ElectronJS", "GPT API", "HTML", "JS"],
+    link: "https://github.com/akoskissak/EduToolkit",
+  },
+  {
     title: "PKI and Shared Password Manager",
-    desc: "A comprehensive security project implementing a Public Key Infrastructure (PKI) system and a Shared Password Manager for the 'Security in Electronic Business Systems' course. The PKI handles issuing, viewing, and revoking Root, Intermediate, and End-Entity certificates, supporting CSRs, and using templates for X.509 extensions. The Shared Password Manager encrypts passwords on the Angular frontend using the recipient's public key for secure storage and sharing. The system features secure user registration (with email confirmation), login with reCAPTCHA, HTTPS communication, active JWT token tracking, robust audit logging, resistance to common web attacks like SQL Injection and XSS, and two factor authentication.",
+    desc: [
+      "Full PKI solution + secure password manager in Spring Boot + Angular",
+      "Support for issuing, revoking, validating X.509 certificates",
+      "Encrypted password sharing using Web Crypto API",
+      "Secure practices: JWT tracking, HTTPS, reCAPTCHA, audit logs",
+      "Protection against SQL Injection, XSS, and other attacks",
+      "Optional 2FA for high security",
+    ].join("\n"),
     tech: [
-      "Java",
-      "Spring Boot",
       "Angular",
-      "PostgreSQL",
-      "WEB Crypto API",
+      "Java",
       "Maven",
       "npm",
+      "PostgreSQL",
+      "Spring Boot",
+      "Web Crypto API",
     ],
     link: "https://github.com/akoskissak/pki-system",
   },
   {
-    title: "Habit Master: RPG Habit & Goal Tracker",
-    desc: "Habit Master is an Android mobile application designed to gamify productivity by transforming real-world goals and habits into an engaging RPG (Role-Playing Game) experience. Users manage daily tasks to earn XP, level up, unlock Equipment, and engage in challenging Boss Fights. The system uses task difficulty/importance to calculate XP rewards, driving user motivation and consistency. Core features include a Character Sheet (displaying Level, XP, Coins, Gear), a Quest Log (Task Management), a Leveling and Boss Fight system, and social Guild Missions where users collaborate to defeat joint bosses.",
-    tech: ["Android", "Java", "SQLite", "Firebase"],
+    title: "Habit Master - RPG Habit & Goal Tracker",
+    desc: [
+      "Gamified Android application for tracking goals and habits",
+      "RPG mechanics: XP, leveling, gear, boss fights",
+      "Quest log with difficulty-based reward system",
+      "Firebase + SQLite for data persistence & sync",
+      "Supports collaborative Guild Missions",
+    ].join("\n"),
+    tech: ["Android", "Firebase", "Java", "SQLite"],
     link: "https://github.com/akoskissak/e2-ma-tim02-2025",
   },
   {
-    title: "Duck Detection Script: Computer Vision for Counting",
-    desc: "This Python script provides an automated solution for detecting and counting ducks within images using fundamental Computer Vision techniques. It leverages HSV color filtering to mask colors typically associated with ducks (white, yellow, and brown). The script then applies contour detection and filtering based on area to accurately count the isolated duck-like objects. It reads ground truth counts from a CSV file, compares them against the detected counts, and calculates the Mean Absolute Error (MAE) to quantify the overall accuracy of the detection methodology.",
-    tech: ["Python", "OpenCV (cv2)", "NumPy", "Pandas"],
+    title: "Duck Detection Script - Computer Vision",
+    desc: [
+      "Python script detecting and counting ducks using OpenCV",
+      "HSV filtering + contour detection for object isolation",
+      "Compares output against ground truth from CSV",
+      "Calculates Mean Absolute Error (MAE) for evaluation",
+    ].join("\n"),
+    tech: ["NumPy", "OpenCV", "Pandas", "Python"],
     link: "https://github.com/akoskissak/DuckDetection",
   },
 ];
@@ -97,13 +149,8 @@ const itemVariants = {
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const openModal = (project) => {
-    setSelectedProject(project);
-  };
-
-  const closeModal = () => {
-    setSelectedProject(null);
-  };
+  const openModal = (project) => setSelectedProject(project);
+  const closeModal = () => setSelectedProject(null);
 
   return (
     <div className="max-width py-24">
@@ -129,8 +176,9 @@ export default function Projects() {
             <h3 className="text-xl font-semibold text-[rgb(var(--color-text))] mb-2">
               {p.title}
             </h3>
+            {/* Short bullet preview */}
             <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-              {p.desc.split(". ")[0]}.
+              {p.desc.split("\n")[0]}
             </p>
             <div className="flex gap-2 flex-wrap">
               {p.tech.slice(0, 3).map((t) => (

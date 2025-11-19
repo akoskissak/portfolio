@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
 
 export default function CV() {
+  const handleDownloadCV = () => {
+    if (typeof gtag !== "undefined") {
+      gtag("event", "download_cv", {
+        event_category: "CV",
+        event_label: "Download CV PDF",
+      });
+    }
+  };
   return (
     <div className="max-width py-24">
       <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-[rgb(var(--color-text))]">
@@ -18,6 +26,7 @@ export default function CV() {
         <a
           href="CV_AkosKiss.pdf"
           download="CV_AkosKiss.pdf"
+          onClick={handleDownloadCV}
           className="px-6 py-3 rounded-full bg-[rgb(var(--color-text))] text-[rgb(var(--color-bg))] font-medium shadow transition-colors hover:opacity-90"
         >
           Download CV

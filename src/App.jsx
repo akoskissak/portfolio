@@ -6,12 +6,14 @@ import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
 import CV from "./sections/cv";
 import Contact from "./sections/Contact";
+import { initAnalytics } from "./analytics";
 
 export default function App() {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     document.body.className = theme;
+    initAnalytics();
   }, [theme]);
 
   const toggleTheme = () => {

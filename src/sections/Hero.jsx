@@ -35,13 +35,22 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.45 }}
+          className="mt-2 font-medium text-sm sm:text-base md:text-lg text-[rgb(var(--color-text))]"
+        >
+          Backend • Cloud • HPC • DevOps • Data Engineering
+        </motion.p>
+
+        <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
           className="mt-4 text-base sm:text-lg md:text-xl text-gray-500 max-w-xl px-4 sm:px-0"
         >
-          A passionate developer crafting interactive tools and experiences that
-          blend design, logic, and creativity.
+          Backend and Cloud Engineer focused on distributed systems performance,
+          scalable microservices, and modern DevOps automation.
         </motion.p>
 
         <motion.a

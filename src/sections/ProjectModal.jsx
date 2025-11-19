@@ -17,13 +17,17 @@ export default function ProjectModal({ project, onClose }) {
     if (project) {
       document.body.style.overflow = "hidden";
     }
-
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [project]);
 
   if (!project) return null;
+
+  const bulletItems = project.desc
+    .replace(/\r/g, "")
+    .split(/\n|\t/)
+    .filter(Boolean);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,9 +74,11 @@ export default function ProjectModal({ project, onClose }) {
             </button>
           </div>
 
-          <p className="text-base text-[rgb(var(--color-text))] mb-6 whitespace-pre-line">
-            {project.desc}
-          </p>
+          <ul className="list-disc pl-6 space-y-2 text-gray-400 text-sm leading-relaxed mb-6">
+            {bulletItems.map((item, index) => (
+              <li key={index}>{item.trim()}</li>
+            ))}
+          </ul>
 
           <h4 className="text-lg font-semibold mb-2">Technologies Used:</h4>
 
