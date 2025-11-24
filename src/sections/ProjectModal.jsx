@@ -44,6 +44,30 @@ export default function ProjectModal({ project, onClose }) {
     show: { opacity: 1, y: 0 },
   };
 
+  const TeamIcon = (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      {...props}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.7"
+        d="M17 20v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"
+      />
+      <circle cx="9" cy="7" r="4" strokeWidth="1.7" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.7"
+        d="M23 20v-2a4 4 0 00-3-3.87M15 3.13A4 4 0 0119 7"
+      />
+    </svg>
+  );
+
   return (
     <AnimatePresence>
       <motion.div
@@ -74,11 +98,22 @@ export default function ProjectModal({ project, onClose }) {
             </button>
           </div>
 
-          <ul className="list-disc pl-6 space-y-2 text-gray-400 text-sm leading-relaxed mb-6">
+          <ul className="list-disc pl-6 space-y-2 text-[rgb(var(--color-text-muted)) text-sm leading-relaxed mb-6">
             {bulletItems.map((item, index) => (
               <li key={index}>{item.trim()}</li>
             ))}
           </ul>
+
+          {project.contributors !== undefined && (
+            <div className="flex items-center gap-2 mb-4 text-[rgb(var(--color-text))] opacity-80">
+              <TeamIcon className="w-5 h-5" />
+              <span className="text-sm">
+                {project.contributors === 1
+                  ? "Independent"
+                  : `Team of ${project.contributors}`}
+              </span>
+            </div>
+          )}
 
           <h4 className="text-lg font-semibold mb-2">Technologies Used:</h4>
 
@@ -88,10 +123,11 @@ export default function ProjectModal({ project, onClose }) {
             initial="hidden"
             animate="show"
           >
-            {project.tech.map((t) => (
+            {project.tech.map((t, i) => (
               <motion.span
                 key={t}
                 variants={itemVariants}
+                transition={{ delay: i * 0.1 }}
                 className="text-sm px-3 py-1 rounded-full bg-[rgba(var(--color-text),0.1)] font-medium"
               >
                 {t}

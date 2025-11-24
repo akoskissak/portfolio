@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import ProjectModal from "./ProjectModal";
 
 const projects = [
@@ -22,6 +27,7 @@ const projects = [
       "Python",
     ],
     link: "https://github.com/crncevicmarko/LLM-AWS-Search",
+    contributors: 7,
   },
   {
     title: "Tourism Booking Platform",
@@ -35,6 +41,7 @@ const projects = [
     ].join("\n"),
     tech: [".NET", "C#", "Angular", "PostgreSQL", "Scrum/Agile"],
     link: "https://github.com/akoskissak/psw-be-ra-2024-group-6",
+    contributors: 13,
   },
   {
     title: "Microservices-Based Tourism Platform",
@@ -63,6 +70,7 @@ const projects = [
       "Telegraf",
     ],
     link: "https://github.com/akoskissak/soa-team-5",
+    contributors: 4,
   },
   {
     title: "EduToolkit - AI Interactive Tools Generator",
@@ -76,6 +84,7 @@ const projects = [
 
     tech: ["CSS", "ElectronJS", "GPT API", "HTML", "JS"],
     link: "https://github.com/akoskissak/EduToolkit",
+    contributors: 1,
   },
   {
     title: "PKI and Shared Password Manager",
@@ -97,6 +106,7 @@ const projects = [
       "Web Crypto API",
     ],
     link: "https://github.com/akoskissak/pki-system",
+    contributors: 3,
   },
   {
     title: "Habit Master - RPG Habit & Goal Tracker",
@@ -109,6 +119,7 @@ const projects = [
     ].join("\n"),
     tech: ["Android", "Firebase", "Java", "SQLite"],
     link: "https://github.com/akoskissak/e2-ma-tim02-2025",
+    contributors: 2,
   },
   {
     title: "Duck Detection Script - Computer Vision",
@@ -120,6 +131,7 @@ const projects = [
     ].join("\n"),
     tech: ["NumPy", "OpenCV", "Pandas", "Python"],
     link: "https://github.com/akoskissak/DuckDetection",
+    contributors: 1,
   },
 ];
 
@@ -173,38 +185,123 @@ export default function Projects() {
         whileInView="show"
         viewport={{ once: true }}
       >
-        {projects.map((p, i) => (
-          <motion.div
-            key={i}
-            onClick={() => openModal(p)}
-            whileHover={{ scale: 1.03 }}
-            variants={itemVariants}
-            className="group glass p-6 rounded-2xl block border-transparent hover:border-[rgba(var(--color-text),0.1)] transition-colors cursor-pointer"
-          >
-            <h3 className="text-xl font-semibold text-[rgb(var(--color-text))] mb-2">
-              {p.title}
-            </h3>
-            {/* Short bullet preview */}
-            <p className="text-gray-400 text-sm mb-4 line-clamp-2">
-              {p.desc.split("\n")[0]}
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              {p.tech.slice(0, 3).map((t) => (
-                <span
-                  key={t}
-                  className="text-xs px-2 py-1 rounded-full bg-[rgba(var(--color-text),0.08)]"
-                >
-                  {t}
-                </span>
-              ))}
-              {p.tech.length > 3 && (
-                <span className="text-xs px-2 py-1 rounded-full bg-[rgba(var(--color-text),0.08)]">
-                  +{p.tech.length - 3} more
+        {projects.map((p, i) => {
+          const rotateX = useSpring(useMotionValue(0), {
+            stiffness: 300,
+            damping: 18,
+          });
+          const rotateY = useSpring(useMotionValue(0), {
+            stiffness: 300,
+            damping: 18,
+          });
+          const scale = useSpring(useMotionValue(1), {
+            stiffness: 260,
+            damping: 20,
+          });
+
+          const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+          const [hovering, setHovering] = useState(false);
+
+          const handleMouseMove = (e) => {
+            const card = e.currentTarget;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            rotateX.set(((y - centerY) / centerY) * 10);
+            rotateY.set(((x - centerX) / centerX) * -10);
+            scale.set(1.05);
+
+            setMousePos({ x, y });
+            setHovering(true);
+          };
+
+          const handleMouseLeave = () => {
+            requestAnimationFrame(() => {
+              rotateX.set(0);
+              rotateY.set(0);
+              scale.set(1);
+              setHovering(false);
+            });
+          };
+
+          return (
+            <motion.div
+              key={i}
+              variants={itemVariants}
+              onClick={() => openModal(p)}
+              onMouseMove={i < 2 ? handleMouseMove : undefined}
+              onMouseLeave={i < 2 ? handleMouseLeave : undefined}
+              whileHover={
+                i >= 2
+                  ? {
+                      scale: 1.05,
+                      boxShadow: "0 0 0 1px rgba(var(--color-text),0.15)",
+                    }
+                  : {}
+              }
+              style={{
+                rotateX,
+                rotateY,
+                scale,
+                transform: "perspective(900px)",
+              }}
+              className={`tilt-card group glass p-6 rounded-2xl block border-transparent cursor-pointer relative will-change-transform overflow-hidden`}
+            >
+              {i < 2 && hovering && (
+                <div
+                  className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                  style={{
+                    background: `radial-gradient(circle 150px at ${mousePos.x}px ${mousePos.y}px, rgba(255,255,255,0.15), transparent 80%)`,
+                  }}
+                />
+              )}
+              {i < 2 && (
+                <span className="absolute top-3 right-3 flex items-center justify-center">
+                  <svg
+                    className="w-7 h-7 animate-pulse-slow"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke={`rgb(var(--badge-gold))`}
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+                    <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+                    <path d="M9.7 17l4.6 0" />
+                  </svg>
                 </span>
               )}
-            </div>
-          </motion.div>
-        ))}
+
+              <h3 className="text-xl font-semibold text-[rgb(var(--color-text))] mb-2">
+                {p.title}
+              </h3>
+
+              <p className="text-[rgb(var(--color-text-muted)) text-sm mb-4 line-clamp-2">
+                {p.desc.split("\n")[0]}
+              </p>
+
+              <div className="flex gap-2 flex-wrap">
+                {p.tech.slice(0, 3).map((t) => (
+                  <span
+                    key={t}
+                    className="text-xs px-2 py-1 rounded-full bg-[rgba(var(--color-text),0.08)]"
+                  >
+                    {t}
+                  </span>
+                ))}
+                {p.tech.length > 3 && (
+                  <span className="text-xs px-2 py-1 rounded-full bg-[rgba(var(--color-text),0.08)]">
+                    +{p.tech.length - 3} more
+                  </span>
+                )}
+              </div>
+            </motion.div>
+          );
+        })}
       </motion.div>
 
       <AnimatePresence>

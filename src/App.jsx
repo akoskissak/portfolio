@@ -9,7 +9,12 @@ import Contact from "./sections/Contact";
 import { initAnalytics } from "./analytics";
 
 export default function App() {
-  const [theme, setTheme] = useState("light");
+  const getInitialTheme = () => {
+    const hour = new Date().getHours();
+    return hour >= 19 || hour < 7 ? "dark" : "light";
+  };
+
+  const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
     document.body.className = theme;
